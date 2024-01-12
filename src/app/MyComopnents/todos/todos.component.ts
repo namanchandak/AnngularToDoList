@@ -16,7 +16,7 @@ export class TodosComponent {
   {
     this.todos = [
       {
-        sno:2, 
+        sno:1, 
         title:"tit 1",
         desc:" info",
         active:true
