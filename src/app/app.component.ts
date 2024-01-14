@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TodosComponent } from './MyComopnents/todos/todos.component';
+import { TodoItemComponent } from "./MyComopnents/todo-item/todo-item.component";
 
 
 @Component({

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TodoItemComponent } from "../todo-item/todo-item.component";
 
 import { TodosComponent } from './todos.component';
 
@@ -8,7 +9,7 @@ describe('TodosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodosComponent]
+      imports: [TodosComponent, TodoItemComponent]
     })
     .compileComponents();
     
