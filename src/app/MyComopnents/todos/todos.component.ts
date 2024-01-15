@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { Todo } from "../../Todo";
-import {NgFor, NgForOf} from "@angular/common";
+import {NgFor, NgForOf, NgIf} from "@angular/common";
 import { TodoItemComponent } from "../todo-item/todo-item.component";
-
+import { AddTodoComponent } from "../add-todo/add-todo.component";
 
 @Component({
-  selector: 'app-todos',
-  standalone: true,
-  imports: [NgFor, TodoItemComponent],
-  templateUrl: './todos.component.html',
-  styleUrl: './todos.component.css'
+    selector: 'app-todos',
+    standalone: true,
+    templateUrl: './todos.component.html',
+    styleUrl: './todos.component.css',
+    imports: [NgFor, TodoItemComponent, AddTodoComponent, NgIf]
 })
 export class TodosComponent {
   todos:Todo[];
@@ -42,5 +42,10 @@ export class TodosComponent {
       console.log(todo)
       const index = this.todos.indexOf(todo)
       this.todos.splice(index, 1)
+    }
+    AddTodo(todo : Todo)
+    {
+      console.log(todo)
+      this.todos.push(todo)
     }
 }
