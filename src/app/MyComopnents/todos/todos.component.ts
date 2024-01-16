@@ -9,32 +9,23 @@ import { AddTodoComponent } from "../add-todo/add-todo.component";
     standalone: true,
     templateUrl: './todos.component.html',
     styleUrl: './todos.component.css',
-    imports: [NgFor, TodoItemComponent, AddTodoComponent, NgIf]
+    imports: [NgFor, TodoItemComponent, AddTodoComponent, NgIf,]
 })
 export class TodosComponent {
   todos:Todo[];
+  localItem : string;
   constructor()
   {
-    this.todos = [
-      {
-        sno:1, 
-        title:"tit 1",
-        desc:" info",
-        active:true
-      },
-      {
-        sno:2, 
-        title:"tit2",
-        desc:" info",
-        active:true
-      },
-      {
-        sno:3, 
-        title:"tit3",
-        desc:" info",
-        active:true
-      },
-    ]
+    // this.localItem = localStorage.getItem("todos");
+    // if(this.localItem == null){
+      this.todos = [
+      ]
+    // }
+    // else
+    // {
+    //   this.todos = JSON.parse(this.localItem)
+    // }
+    
     
   }
   deleteTodo(todo : Todo)
@@ -42,10 +33,20 @@ export class TodosComponent {
       console.log(todo)
       const index = this.todos.indexOf(todo)
       this.todos.splice(index, 1)
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     }
     AddTodo(todo : Todo)
     {
       console.log(todo)
       this.todos.push(todo)
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+
+    }
+    toggleTodo(todo : Todo)
+    {
+      const index = this.todos.indexOf(todo)
+      this.todos[index].active = ! this.todos[index].active;
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+
     }
 }
