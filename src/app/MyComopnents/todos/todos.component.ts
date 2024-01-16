@@ -16,15 +16,22 @@ export class TodosComponent {
   localItem : string;
   constructor()
   {
-    // this.localItem = localStorage.getItem("todos");
-    // if(this.localItem == null){
-      this.todos = [
-      ]
-    // }
-    // else
-    // {
-    //   this.todos = JSON.parse(this.localItem)
-    // }
+    try {
+      this.localItem = localStorage.getItem("todos");
+    
+      if (this.localItem === null) {
+        this.todos = [];
+      } else {
+        this.todos = JSON.parse(this.localItem);
+      }
+    } catch (error) {
+      // Handle the error here
+      console.error('Error while working with localStorage: todos not exist', error);
+    
+      // You can provide a default value or take other appropriate actions
+      this.todos = [];
+    }
+    
     
     
   }
