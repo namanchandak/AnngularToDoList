@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from "../../Todo";
 import {NgFor, NgForOf, NgIf} from "@angular/common";
 import { TodoItemComponent } from "../todo-item/todo-item.component";
@@ -11,15 +11,16 @@ import { AddTodoComponent } from "../add-todo/add-todo.component";
     styleUrl: './todos.component.css',
     imports: [NgFor, TodoItemComponent, AddTodoComponent, NgIf,]
 })
-export class TodosComponent {
+export class TodosComponent implements OnInit {
   todos:Todo[];
   localItem : string;
   constructor()
   {
-    try {
-      this.localItem = localStorage.getItem("todos");
     
-      if (this.localItem === null) {
+    try {
+      // this.localItem = localStorage.getItem("todos");
+    
+      if (!this.localItem ) {
         this.todos = [];
       } else {
         this.todos = JSON.parse(this.localItem);
@@ -32,7 +33,9 @@ export class TodosComponent {
       this.todos = [];
     }
     
-    
+  }
+  ngOnInit(): void {
+
     
   }
   deleteTodo(todo : Todo)
