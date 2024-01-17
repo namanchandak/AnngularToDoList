@@ -1,20 +1,27 @@
 const express = require('express');
 const todo = express.Router();
+const tododb = require("./tododb")
 
 todo.post("/", (req, res) => {
    let task = req.body.task;
    let desc = req.body.desc;
 
    if (!task) {
-      return res.status(404).json({ message: "todo not added" });
-   }
-   if (!desc) {
-      return res.status(200).json({ message: "todo added without description" });
-   }
+    return res.status(404).json({ message: "todo not added - task is missing" });
+ }
+ if (!desc) {
+    return res.status(200).json({ message: "todo added without description" });
+ }
 
-   // You may want to add the task and desc to your todos array or database here
-
+   tododb.addTodo(task, desc);
    return res.status(200).json({ message: "todo added" });
 });
+
+
+todo.get("/", (req, res) => {
+   res.send(JSON.stringify(tododb))
+});
+
+
 
 module.exports = todo;
